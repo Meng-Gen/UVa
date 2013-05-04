@@ -1,5 +1,6 @@
 *.ncb
 *.suo
 Debug/
+Release/
 UVa/*.user
 UVa/Debug/
