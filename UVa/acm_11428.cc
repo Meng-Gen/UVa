@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
         {
             std::cout << "No solution" << std::endl;
         }
-	}
+    }
 
-	return 0;
+    return 0;
 }
