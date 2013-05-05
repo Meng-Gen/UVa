@@ -20,29 +20,28 @@ int main(int argc, char* argv[])
             break;
         }
 
-        int x = -1;
-        int y = -1;
+        bool found = false;
         for (int i = 1; cube[i+1] - cube[i] <= N; i++)
         {
             for (int j = i+1; cube[j] - cube[i] <= N; j++)
             {
                 if (N == (cube[j] - cube[i]))
                 {
-                    x = j;
-                    y = i;
+                    std::cout << j << " " << i << std::endl;
+                    found = true;
+                    // Only break the inner loop.
+                    // You need to break the outer loop.
                     break;
                 }
             }
-            if (x != -1)
+            // Otherwise you will get a lot of WA because of 999.
+            if (found)
             {
                 break;
             }
         }
-        if (x != -1 && y != -1) 
-        {
-            std::cout << x << " " << y << std::endl;   
-        }
-		else
+
+		if (!found)
         {
             std::cout << "No solution" << std::endl;
         }
