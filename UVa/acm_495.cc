@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
     }
 
     int n;
-    while(std::cin >> n) 
+    while (std::cin >> n) 
     {
         if (n == 0)
         {
@@ -47,4 +47,6 @@ int main(int argc, char* argv[])
             printf("\n");
         }
     }
+
+    return 0;
 }
