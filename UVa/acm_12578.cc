@@ -7,7 +7,7 @@
 int main(int argc, char* argv[])
 {
     int n;
-    while(std::cin >> n)
+    while (std::cin >> n)
     {
         for (int i = 1; i <= n; i++)
         {

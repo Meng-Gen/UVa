@@ -61,7 +61,6 @@ long long get_modular_fibonacci(int a, int b, int n, int m)
         module *= 10;
     }
 
-    Matrix initial_value = Matrix(b+a, b, b, a);
     if (n == 0)
     {
         return a % module;
@@ -74,6 +73,8 @@ long long get_modular_fibonacci(int a, int b, int n, int m)
     {
         return (a+b) % module;
     }
+
+    Matrix initial_value = Matrix(b+a, b, b, a);
     Matrix characteristic_matrix = Matrix(1, 1, 1, 0);
     Matrix rv = characteristic_matrix.pow(n - 2, module);
     rv = rv.multiply(initial_value, module);

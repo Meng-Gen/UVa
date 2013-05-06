@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
 	}
 	keyboard_map[' '] = ' ';
 
-	while(std::cin.getline(buffer, 50000))
+	while (std::cin.getline(buffer, 50000))
 	{
 		int i = 0;
 		while (buffer[i])

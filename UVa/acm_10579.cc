@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
     }
 
     int n;
-    while(std::cin >> n) 
+    while (std::cin >> n) 
     {
         int j = 0;
         for (j = 1004; j >= 0; j--)
@@ -41,4 +41,5 @@ int main(int argc, char* argv[])
         }
         printf("\n");
     }
+    return 0;
 }
