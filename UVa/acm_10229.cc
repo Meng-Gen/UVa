@@ -71,7 +71,7 @@ int main(int argc, char* argv[])
     while (std::cin >> n >> m)
     {
         std::cout << get_modular_fibonacci(n, m) << std::endl;
-	}
+    }
 
-	return 0;
+    return 0;
 }
