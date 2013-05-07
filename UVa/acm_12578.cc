@@ -14,9 +14,9 @@ int main(int argc, char* argv[])
             int flag_length;
             std::cin >> flag_length;
             
-			double red_area = (double)flag_length * (double)flag_length * 0.2 * 0.2 * CONSTANT_PI;
-			double green_area = (double)flag_length * (double)flag_length * 0.6 - red_area;
-			printf("%.2lf %.2lf\n", red_area, green_area);
+            double red_area = (double)flag_length * (double)flag_length * 0.2 * 0.2 * CONSTANT_PI;
+            double green_area = (double)flag_length * (double)flag_length * 0.6 - red_area;
+            printf("%.2lf %.2lf\n", red_area, green_area);
         }
     }
 
