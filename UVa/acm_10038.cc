@@ -31,8 +31,11 @@ int main(int argc, char* argv[])
             }
             prev_num = curr_num;
         }
+
         std::sort(diff_set.begin(), diff_set.end());
 
+        // After we sort |diff_set|, it should be 1, 2, ..., n-1 when the 
+        // sequence is jolly.  T(n) = O(n log(n)).
         bool is_jolly = true;
         for (int i = 0; i < n-1; i++)
         {
