@@ -44,10 +44,8 @@ int main(int argc, char* argv[])
         
         if (is_begin_word)
         {
-            is_begin_word = false;
             andy_dictionary.insert(word_builder.str());
         }
-        
     }
 
     std::set<std::string>::iterator it;
