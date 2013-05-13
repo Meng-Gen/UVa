@@ -1,91 +1,79 @@
+// Dynamic Programming :: Max 2D Range Sum 
+
 #include <iostream>
-#include <stdlib.h>
-#include <string.h>
+#include <stdio.h>
 
-using namespace std;
+int N;
+long long M[101][101];
+long long column_sum[101];
 
-// TODO: TLE
-// BF cannot work.  We need DP instead.
-int main(int argc, char* argv[])
+inline long long get_max(long long a, long long b)
 {
-	char dim_string[4];
-	char buffer[50000];
-	int M[100][100];
+    if (a > b)
+    {
+        return a;
+    }
+    return b;
+}
 
-	while (1)
-	{
-		std::cin.getline(dim_string, 4); 
-		int N = atoi(dim_string);
+// Kadane's algorithm
+long long get_maximum_subarray(long long* query_array, int array_size)
+{
+    long long max_ending_here = 0LL;
+    long long max_so_far = 0LL;
+    for (int i = 0; i < array_size; i++) 
+    {
+        max_ending_here = get_max(0, max_ending_here + query_array[i]);
+        max_so_far = get_max(max_so_far, max_ending_here);
+    }
+    return max_so_far;
+}
 
-		int matrix_size = N * N;
-		int curr_index = 0;
-		while(curr_index != matrix_size)
-		{
-			std::cin.getline(buffer, 50000);
-			char* curr_string = strtok(buffer, " ");
-			if (curr_string)
-			{
-				M[curr_index / N][curr_index % N] = atoi(curr_string);
-				curr_index++;
-			}
-			while (curr_string = strtok(0, " "))
-			{
-				M[curr_index / N][curr_index % N] = atoi(curr_string);
-				curr_index++;
-			}
-		}
+int main(int argc, char* argv[]) 
+{
+    std::cin >> N;
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            std::cin >> M[i][j];
+        }
+    }
 
-		for (int i = 0; i < N; i++)
-		{
-			for (int j = 1; j < N; j++)
-			{
-				M[i][j] += M[i][j-1];
-			}
-		}
-		for (int j = 0; j < N; j++)
-		{
-			for (int i = 1; i < N; i++)
-			{
-				M[i][j] += M[i-1][j];
-			}
-		}
+    // Compute partial sums
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 1; j < N; j++)
+        {
+            M[i][j] += M[i][j-1];
+        }
+    }
 
-		// Time complexity = O(N^4)
-		int max_sum = 0;
-		if (N > 0)
-		{
-			max_sum = M[0][0];
-			for (int x1 = 0; x1 < N; x1++)
-			{
-				for (int y1 = 0; y1 < N; y1++)
-				{
-					for (int x2 = x1; x2 < N; x2++)
-					{
-						for (int y2 = y1; y2 < N; y2++)
-						{
-							int sub_sum = M[x2][y2];
-							if (x1 != x2)
-							{
-								sub_sum -= M[x1][y2];
-							}
-							if (y1 != y2)
-							{
-								sub_sum -= M[x2][y1];
-							}
-							if (x1 != x2 && y1 != y2)
-							{
-								sub_sum += M[x1][y1];
-							}
-							if (sub_sum > max_sum)
-							{
-								max_sum = sub_sum;
-							}
-						}
-					}	
-				}
-			}
-		}
+    long long max_so_far = M[0][0];
 
-		std::cout << max_sum << std::endl;
-	}
+    // T(N) = O(N^3)
+    for (int min_j = 0; min_j < N; min_j++)
+    {
+        for (int max_j = min_j; max_j < N; max_j++)
+        {
+            // Init |column_sum|
+            for (int i = 0; i < N; i++)
+            {
+                if (min_j == max_j)
+                {
+                    column_sum[i] = M[i][max_j];
+                }
+                else
+                {
+                    column_sum[i] = M[i][max_j] - M[i][min_j];
+                }
+            }
+
+            long long max = get_maximum_subarray(column_sum, N);
+            max_so_far = get_max(max_so_far, max);
+        }
+    }
+    std::cout << max_so_far << std::endl;
+
+    return 0;
 }
