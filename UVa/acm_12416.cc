@@ -34,8 +34,7 @@ int main(int argc, char* argv[])
         }
 
         int rv = 0;
-        int P = max_space;
-        for (; P > 0; P >>= 1)
+        for (int i = max_space; i > 0; i >>= 1)
         {
             rv++;
         }
