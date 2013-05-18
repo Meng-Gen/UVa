@@ -46,6 +46,7 @@ int main(int argc, char* argv[])
                 for (int k = 0; k < 3; k++)
                 {
                     puzzle[j][k] += transition[command[i]-'a'][j][k];
+                    puzzle[j][k] %= 10;
                 }
             }
         }
