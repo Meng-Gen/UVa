@@ -5,7 +5,7 @@
 
 int P[1000001];
 
-// Knuth¡VMorris¡VPratt algorithm
+// Knuth-Morris-Pratt algorithm
 int GetPower(const std::string& query)
 {
     int length = query.size();
