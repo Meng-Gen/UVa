@@ -7,20 +7,20 @@ int GetPeriodByKMP(const std::string& query)
     int length = query.size();
 
     int P[100] = {};
-	P[0] = -1;
+    P[0] = -1;
     int j = -1;
     for (int i = 1; i < length; i++)
     {
-		while(j >= 0 && query[j+1] != query[i])
+        while(j >= 0 && query[j+1] != query[i])
         {
-			j = P[j];
+            j = P[j];
         }
         if (query[j+1] == query[i])
         {
-			j++;
+            j++;
         }
-		P[i] = j; 
-	}
+        P[i] = j; 
+    }
 
     int period = length - j - 1;
     if (length % period == 0)
