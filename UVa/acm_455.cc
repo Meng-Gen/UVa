@@ -7,6 +7,10 @@ int GetPeriod(const std::string& query)
     int length = query.size();
     for (int period = 1; period <= length/2; period++)
     {
+        if (length % period != 0)
+        {
+            continue;
+        }
         bool is_possible = true;
         for (int i = 0; i < length - period; i++)
         {
@@ -16,7 +20,7 @@ int GetPeriod(const std::string& query)
                 break;
             }
         }
-        if (is_possible && (length % period == 0))
+        if (is_possible)
         {
             return period;
         }
