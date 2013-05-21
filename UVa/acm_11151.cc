@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <string.h>
 
-char buffer[1002];
 int c[1002][1002];
 
 inline int get_max(int a, int b)
@@ -49,34 +48,3 @@ int main(int argc, char* argv[])
     }
     return 0;
 }
-
-// Test case
-// =========
-// 12
-// ADAM
-// MADAM
-// 
-// qweqweqwedadqweqweqwe
-// 
-// aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-// abcdefghijklmnopqrstuvwxyz
-// abcdefhh
-// abcabcabc
-// 0101010101
-// a
-// abefgba
-//
-// Expected
-// ========
-// 3
-// 5
-// 0
-// 13
-// 0
-// 255
-// 1
-// 2
-// 5
-// 9
-// 1
-// 5
