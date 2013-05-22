@@ -66,6 +66,9 @@ double GetMinCost()
         {
             if (visited[i])
             {
+                // Here if we use priority queue (heap), 
+                // we can reduce the time complexity.
+                // However, I am lazy.
                 for (int j = 0; j < N; j++)
                 {
                     if (!visited[j])
