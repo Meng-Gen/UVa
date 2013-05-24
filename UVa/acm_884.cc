@@ -29,7 +29,7 @@ inline void InitQueryTable()
     for (int i = 2; i < 1000001; i++)
     {
         query[i] = query[i-1] + prime_factor_count[i];
-    }    
+    }
 }
 
 int main(int argc, char* argv[])
