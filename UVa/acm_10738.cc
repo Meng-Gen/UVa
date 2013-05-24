@@ -7,7 +7,9 @@ int M[1000001] = {};
 
 inline void InitMobiusFunction()
 {
-    mu[1] = 1; // by definition
+    mu[1] = 1; // By definition
+
+    // Count the number of distinct (prime) factors.  Sieve.
     for (long long i = 2; i < 1000001; i++)
     {
         if (!mu[i])
@@ -19,6 +21,7 @@ inline void InitMobiusFunction()
         }
     }
 
+    // If N is not square free, mu(N) = 0.  Sieve again.
     for (long long i = 2; i < 1000001; i++)
     {
         if (mu[i] == 1)
@@ -31,12 +34,14 @@ inline void InitMobiusFunction()
         }
     }
 
+    // Turn the count of (prime) factors into 1 or -1 if N is square free.
     for (long long i = 2; i < 1000001; i++)
     {
         if (mu[i] % 2 == 1)
         {
             mu[i] = -1;
         }
+        // Exclude the case mu[N] is 0 (not square free).
         else if (mu[i] > 0)
         {
             mu[i] = 1;
