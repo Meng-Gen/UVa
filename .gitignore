@@ -1,6 +1,5 @@
-*.ncb
-*.suo
-Debug/
-Release/
-UVa/*.user
-UVa/Debug/
+msvc/*.ncb
+msvc/*.suo
+msvc/Debug/
+msvc/Release/
+msvc/*.user
