@@ -36,10 +36,8 @@ void PrintFactor(long long n)
     }
 
     long long d = n;
-    long long sigma = 1;
     for (long long i = 0; i < 4851 && (prime[i] * prime[i] <= d); i++)
     {
-        long long prime_power = 0;
         while (d % prime[i] == 0)
         {
             if (is_leading_term)
@@ -52,9 +50,7 @@ void PrintFactor(long long n)
                 printf(" x %lld", prime[i]);
             }
             d /= prime[i];
-            prime_power++;
         }
-        sigma *= (prime_power + 1);
     }
 
     if (d > 1) 
@@ -68,7 +64,6 @@ void PrintFactor(long long n)
         {
             printf(" x %lld", d);
         }
-        sigma *= 2;
     }
 
     if (is_leading_term)
