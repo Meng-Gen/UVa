@@ -18,11 +18,11 @@ public class Main {
 	}
 	
 	private static BigInteger getGCD(BigInteger a, BigInteger b) {
-	    while (b.compareTo(BigInteger.ZERO) > 0) {
-	        BigInteger t = b;
-	        b = a.mod(t);
-	        a = t;
-	    }
-	    return a;
+		while (b.compareTo(BigInteger.ZERO) > 0) {
+			BigInteger t = b;
+			b = a.mod(t);
+			a = t;
+		}
+		return a;
 	}
 }
