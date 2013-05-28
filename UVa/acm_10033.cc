@@ -44,7 +44,7 @@ int main(int argc, char* argv[])
             ram_pos++;            
             switch (opcode)
             {
-            // It should not be here.
+            // halt
             case 1:
                 is_halt = true;
                 break;
