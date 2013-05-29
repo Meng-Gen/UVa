@@ -46,7 +46,7 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				WarningLevel="3"
+				WarningLevel="2"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -166,7 +166,7 @@
 	</References>
 	<Files>
 		<File
-			RelativePath="..\UVa\acm_11203.cc"
+			RelativePath="..\UVa\acm_1549.cc"
 			>
 		</File>
 	</Files>
