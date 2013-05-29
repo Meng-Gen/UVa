@@ -166,7 +166,7 @@
 	</References>
 	<Files>
 		<File
-			RelativePath=".\acm_10424.cc"
+			RelativePath="..\UVa\acm_10005.cc"
 			>
 		</File>
 	</Files>
