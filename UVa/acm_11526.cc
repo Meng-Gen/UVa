@@ -19,11 +19,17 @@ long long H(long long n)
 {
     long long n_sqrt = SquareRoot(n);
     long long sum = 0;
-    for (int i = 1; i <= n_sqrt; i++) 
+    long long prev_pos = 0;
+    long long curr_pos = n;
+    for (long long i = 1; i <= n_sqrt; i++) 
     {
         sum += n/i;
+        if (i != n/i) 
+        {
+            sum += (i * (n/i - n/(i+1)));
+        }
     }
-    return sum * 2 - n_sqrt * n_sqrt;
+    return sum;
 }
 
 int main(int argc, char* argv[]) 
