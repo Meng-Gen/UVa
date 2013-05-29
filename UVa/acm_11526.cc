@@ -19,8 +19,6 @@ long long H(long long n)
 {
     long long n_sqrt = SquareRoot(n);
     long long sum = 0;
-    long long prev_pos = 0;
-    long long curr_pos = n;
     for (long long i = 1; i <= n_sqrt; i++) 
     {
         sum += n/i;
