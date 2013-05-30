@@ -209,7 +209,7 @@ void FillRegion()
         Node top = dfs_stack.top();
         dfs_stack.pop();
 
-        if (top.x_ < 0 || top.x_ >= N || top.y_ < 0 || top.y_ >= N)
+        if (top.x_ < 0 || top.x_ >= M || top.y_ < 0 || top.y_ >= N)
         {
             continue;
         }
