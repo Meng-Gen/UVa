@@ -18,11 +18,6 @@ struct Point
 
     Point() : x(0), y(0) { }
     Point(long long new_x, long long new_y) : x(new_x), y(new_y) { }
-
-    void Debug()
-    {
-        printf("(%lld, %lld)\n", x, y);
-    }
 };
 
 long long Direction(const Point& pi, const Point& pj, const Point& pk)
