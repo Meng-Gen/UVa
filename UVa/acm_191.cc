@@ -84,10 +84,8 @@ int main(int argc, char* argv[])
         Point right_top(right_bottom.x, left_top.y);
         Point left_bottom(left_top.x, right_bottom.y);
 
-        // The line is said to intersect the rectangle if the line and 
-        // the rectangle have at least one point in common.   The rectangle 
-        // consists of four straight lines and the area in between.
-        //             ^^^^^^^^^^^^^^^^^^^     ^^^^^^^^
+        // Rectangle = four straight lines + the area in between.
+        //             ^^^^^^^^^^^^^^^^^^^   ^^^^^^^^^^^^^^^^^^^
         // I got a lot of WA because of ``the area''
         if (OnSegment(left_top, right_bottom, start) 
             || OnSegment(left_top, right_bottom, end))
