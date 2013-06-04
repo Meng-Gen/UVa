@@ -1,234 +1,114 @@
 #include <iostream>
-#include <math.h>
 #include <stdio.h>
 
-// WA
+inline long long minimum(long long a, long long b)
+{
+    return (a < b) ? a : b;
+}
+
+inline long long maximum(long long a, long long b)
+{
+    return (a > b) ? a : b;
+}
 
 struct Point 
 {
-    int x;
-    int y;
+    long long x;
+    long long y;
 
-    Point()
-    { 
-        x = 0;
-        y = 0;
-    }
+    Point() : x(0), y(0) { }
+    Point(long long new_x, long long new_y) : x(new_x), y(new_y) { }
 
-    Point(const Point& another)
+    void Debug()
     {
-        x = another.x;
-        y = another.y;
-    }
-
-    Point(int some_x, int some_y)
-    {
-        x = some_x;
-        y = some_y;
-    }
-
-    double length()
-    {
-        return sqrt((double)(x * x + y * y));
-    }
-
-    int dot(const Point& another)
-    {
-        return x * another.x + y * another.y;
-    }
-
-    int cross(const Point& another)
-    {
-        return x * another.y - y * another.x;
-    }
-
-    Point operator+ (const Point& another)
-    {
-        return Point(x + another.x, y + another.y);
-    }
-
-    Point operator- (const Point& another)
-    {
-        return Point(x - another.x, y - another.y);
-    }
-
-    bool equals(const Point& another)
-    {
-        return (x == another.x) && (y == another.y);
+        printf("(%lld, %lld)\n", x, y);
     }
 };
 
-bool is_in_interval(int start_value, int end_value, double test_value)
+long long Direction(const Point& pi, const Point& pj, const Point& pk)
 {
-    if (start_value < end_value)
-    {
-        return test_value >= start_value && test_value <= end_value;
-    }
-    else
-    {
-        return test_value <= start_value && test_value >= end_value;
-    }
+    Point pki(pk.x - pi.x, pk.y - pi.y);
+    Point pji(pj.x - pi.x, pj.y - pi.y);
+    return pki.x * pji.y - pji.x * pki.y;
 }
 
-bool is_in_line_segment
-    (
-        Point line_start,
-        Point line_end,
-        Point point
-    )
+bool OnSegment(const Point& pi, const Point& pj, const Point& pk)
 {
-    if (line_start.equals(line_end))
-    {
-        return line_start.equals(point);
-    }
-    Point line_vector = line_end - line_start;
-    Point point_vector = point - line_start;
-    int cross = line_vector.cross(point_vector);
-
-    if ((point - line_end).dot(line_vector) > 0)
-    {
-        return point.equals(line_end);
-    }
-    if ((line_start - point).dot(line_vector) > 0)
-    {
-        return point.equals(line_start);
-    }
-
-    return (cross == 0);
+    return (minimum(pi.x, pj.x) <= pk.x) && (pk.x <= maximum(pi.x, pj.x))
+        && (minimum(pi.y, pj.y) <= pk.y) && (pk.y <= maximum(pi.y, pj.y));
 }
 
-bool are_line_segments_intersected
-    (
-        Point a_start,
-        Point a_end,
-        Point b_start,
-        Point b_end
-    )
+bool SegmentsIntersect(
+    const Point& p1, const Point& p2, 
+    const Point& p3, const Point& p4)
 {
-    if (a_start.equals(a_end))
-    {
-        return is_in_line_segment(b_start, b_end, a_start);
-    }
-    if (b_start.equals(b_end))
-    {
-        return is_in_line_segment(a_start, a_end, b_start);
-    }
+    long long d1 = Direction(p3, p4, p1);
+    long long d2 = Direction(p3, p4, p2);
+    long long d3 = Direction(p1, p2, p3);
+    long long d4 = Direction(p1, p2, p4);
 
-    // Line A representation: ax + by = c
-    int a = a_end.y - a_start.y;
-    int b = a_start.x - a_end.x;
-    int c = a_start.x * a_end.y - a_end.x * a_start.y;
-
-    // Line B representation: dx + ey = f
-    int d = b_end.y - b_start.y;
-    int e = b_start.x - b_end.x;
-    int f = b_start.x * b_end.y - b_end.x * b_start.y;
-
-    int det = a * e - b * d;
-
-    // Design choice: If two lines are identical, we regards that
-    // two lines are not intersected.
-    if (det == 0)
+    if (((d1 > 0 && d2 < 0) || (d1 < 0 && d2 > 0)) &&
+        ((d3 > 0 && d4 < 0) || (d3 < 0 && d4 > 0)))
     {
-        return false;
+        return true;
     }
-
-    double x = (double)(c * e - b * f) / (double)det;
-    double y = (double)(a * f - c * d) / (double)det;
-    
-    /*
-    if (!is_in_interval(a_start.x, a_end.x, x))
+    else if ((d1 == 0) && OnSegment(p3, p4, p1))
     {
-        return false;
+        return true;
     }
-    if (!is_in_interval(a_start.y, a_end.y, y))
+    else if ((d2 == 0) && OnSegment(p3, p4, p2))
     {
-        return false;
+        return true;
     }
-    */
-    if (!is_in_interval(b_start.x, b_end.x, x))
+    else if ((d3 == 0) && OnSegment(p1, p2, p3))
     {
-        return false;
+        return true;
     }
-    if (!is_in_interval(b_start.y, b_end.y, y))
+    else if ((d4 == 0) && OnSegment(p1, p2, p4))
     {
-        return false;
+        return true;
     }
-
-    return true;
+    return false;
 }
+
+// -----------------------------------------------------------------------------
 
 int main(int argc, char* argv[])
 {
-    // n test cases.
-    int n;
-    while(std::cin >> n)
+    int num_testcases;
+    std::cin >> num_testcases;
+    while (num_testcases--)
     {
-        for (int i = 1; i <= n; i++)
+        Point start;
+        Point end;
+        Point left_top;
+        Point right_bottom;
+        std::cin >> start.x >> start.y >> end.x >> end.y >> 
+            left_top.x >> left_top.y >> right_bottom.x >> right_bottom.y;
+        
+        Point right_top(right_bottom.x, left_top.y);
+        Point left_bottom(left_top.x, right_bottom.y);
+
+        // The line is said to intersect the rectangle if the line and 
+        // the rectangle have at least one point in common.   The rectangle 
+        // consists of four straight lines and the area in between.
+        //             ^^^^^^^^^^^^^^^^^^^     ^^^^^^^^
+        // I got a lot of WA because of ``the area''
+        if (OnSegment(left_top, right_bottom, start) 
+            || OnSegment(left_top, right_bottom, end))
         {
-            Point line_start;
-            Point line_end;
-            Point rect_top_left;
-            Point rect_bottom_right;
-            std::cin >> 
-                line_start.x >> line_start.y >> 
-                line_end.x >> line_end.y >> 
-                rect_top_left.x >> rect_top_left.y >> 
-                rect_bottom_right.x >> rect_bottom_right.y;
-            
-            int rect_lower_x = rect_top_left.x;
-            int rect_upper_x = rect_bottom_right.x;
-            if (rect_lower_x > rect_upper_x)
-            {
-                int temp = rect_lower_x;
-                rect_lower_x = rect_upper_x;
-                rect_upper_x = temp;
-            }
-
-            int rect_lower_y = rect_top_left.y;
-            int rect_upper_y = rect_bottom_right.y;
-            if (rect_lower_y > rect_upper_y)
-            {
-                int temp = rect_lower_y;
-                rect_lower_y = rect_upper_y;
-                rect_upper_y = temp;
-            }
-
-            Point rect[4] = 
-                { 
-                    Point(rect_lower_x, rect_lower_y),
-                    Point(rect_upper_x, rect_lower_y),
-                    Point(rect_upper_x, rect_upper_y),
-                    Point(rect_lower_x, rect_upper_y)
-                };
-
-            bool is_intersected = false;
-            for (int i = 0; i < 4; i++)
-            {
-                if (is_in_line_segment(rect[i], rect[(i+1)%4], line_start))
-                {
-                    is_intersected = true;
-                    break;
-                }
-                if (is_in_line_segment(rect[i], rect[(i+1)%4], line_end))
-                {
-                    is_intersected = true;
-                    break;
-                }
-                if (are_line_segments_intersected(line_start, line_end, rect[i], rect[(i+1)%4]))
-                {
-                    is_intersected = true;
-                    break;
-                }
-            }
-            if (is_intersected)
-            {
-                printf("T\n");
-            }
-            else
-            {
-                printf("F\n");
-            }
+            puts("T");
+        }
+        else if (SegmentsIntersect(start, end, left_top, right_top)
+            || SegmentsIntersect(start, end, right_top, right_bottom)
+            || SegmentsIntersect(start, end, right_bottom, left_bottom)
+            || SegmentsIntersect(start, end, left_bottom, left_top))
+        {
+            puts("T");
+        }
+        else
+        {
+            puts("F");
         }
     }
 
