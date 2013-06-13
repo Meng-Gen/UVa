@@ -165,10 +165,6 @@
 	<References>
 	</References>
 	<Files>
-		<File
-			RelativePath="..\UVa\acm_350.cc"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>
