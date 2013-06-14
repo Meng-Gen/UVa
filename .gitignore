@@ -1,5 +1,1 @@
-msvc/*.ncb
-msvc/*.suo
-msvc/Debug/
-msvc/Release/
-msvc/*.user
+msvc/
