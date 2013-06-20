@@ -166,11 +166,7 @@
 	</References>
 	<Files>
 		<File
-<<<<<<< HEAD
-			RelativePath="..\UVa\acm_10392.cc"
-=======
-			RelativePath="..\UVa\acm_164.cc"
->>>>>>> ee24811a6281c8aeee3a730d8d422ea44cac0a36
+			RelativePath="..\UVa\acm_412.cc"
 			>
 		</File>
 	</Files>
