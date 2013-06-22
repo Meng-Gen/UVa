@@ -29,27 +29,18 @@ int travel[9] = {};
 
 bool IsGoodPosition(int pos, int vertex)
 {
-    InitVisitedEdges();
     if (!graph[travel[pos-1]][vertex])
     {
         return false;
     }
 
+    InitVisitedEdges();
     for (int i = 0; i < pos-1; i++)
     {
-        if (visited[travel[i]][travel[i+1]] || 
-            visited[travel[i+1]][travel[i]])
-        {
-            return false;
-        }
-        else
-        {
-            visited[travel[i]][travel[i+1]] = true;
-            visited[travel[i+1]][travel[i]] = true;
-        }
+        visited[travel[i]][travel[i+1]] = true;
+        visited[travel[i+1]][travel[i]] = true;
     }
-    if (visited[travel[pos-1]][vertex] ||
-        visited[vertex][travel[pos-1]])
+    if (visited[travel[pos-1]][vertex] || visited[vertex][travel[pos-1]])
     {
         return false;
     }
