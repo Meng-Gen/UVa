@@ -21,8 +21,8 @@ int Cut(int left, int right)
         int cost = 1 << 30;
         for (int i = left + 1; i < right; i++)
         {
-            cost = minimum(cost, Cut(left, i) + Cut(i, right) + 
-                (coord[right] - coord[left]));
+            cost = minimum(cost, 
+                Cut(left, i) + Cut(i, right) + (coord[right] - coord[left]));
         }
         memoization_cut[left][right] = cost;
         visited[left][right] = true;
