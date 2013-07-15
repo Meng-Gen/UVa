@@ -78,7 +78,7 @@ bool IsTautology()
 
 int main(int argc, char* argv[])
 {
-    while (std::cin >> formula && formula != "0")
+    while (getline(std::cin, formula) && formula != "0")
     {
         if (IsTautology())
         {
