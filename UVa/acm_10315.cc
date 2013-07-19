@@ -259,18 +259,18 @@ struct PokerHand
 int main(int argc, char* argv[])
 {
     InitCardValueMap();
-    PokerHand player[2];
+    PokerHand black, white;
 
     while (std::cin >> 
-        player[0].cards[0].rep >> player[0].cards[1].rep >> 
-        player[0].cards[2].rep >> player[0].cards[3].rep >> player[0].cards[4].rep >> 
-        player[1].cards[0].rep >> player[1].cards[1].rep >> 
-        player[1].cards[2].rep >> player[1].cards[3].rep >> player[1].cards[4].rep)
+        black.cards[0].rep >> black.cards[1].rep >> 
+        black.cards[2].rep >> black.cards[3].rep >> black.cards[4].rep >> 
+        white.cards[0].rep >> white.cards[1].rep >> 
+        white.cards[2].rep >> white.cards[3].rep >> white.cards[4].rep)
     {
-        player[0].Normalize();
-        player[1].Normalize();
+        black.Normalize();
+        white.Normalize();
 
-        int rv = player[0].Compare(player[1]);
+        int rv = black.Compare(white);
         if (rv > 0)
         {
             puts("Black wins.");
