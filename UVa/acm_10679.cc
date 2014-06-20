@@ -1,3 +1,4 @@
+// AC: 1.862s
 #include <iostream>
 #include <string>
 #include <stdio.h>
